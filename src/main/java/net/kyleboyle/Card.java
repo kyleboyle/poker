@@ -2,10 +2,10 @@ package net.kyleboyle;
 
 import java.util.Objects;
 
-public class Card {
+public class Card implements Comparable<Card> {
 
-  private final CardType type;
-  private final Suit suit;
+  public final CardType type;
+  public final Suit suit;
 
   public Card(CardType type, Suit suit) {
     this.type = type;
@@ -13,14 +13,16 @@ public class Card {
   }
 
   /**
-   * A card's value / rank is not influenced by its suit.
+   * A card's value / rank is not influenced by its suit. This will sort the natural order in descending
+   * value.
    *
    * @param other the other card to compare to this card
-   * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
-   * or greater than the specified card.
+   * @return the inverse of the typical natural ordering:  a positive integer, zero, or a negative
+   * integer as this object is less than, equal to, or greater than the specified card.
    */
-  int compare(Card other) {
-    return this.type.compareTo(other.type);
+  @Override
+  public int compareTo(Card other) {
+    return -1 * this.type.compareTo(other.type);
   }
 
   @Override
@@ -39,5 +41,10 @@ public class Card {
   @Override
   public int hashCode() {
     return Objects.hash(type, suit);
+  }
+
+  @Override
+  public String toString() {
+    return type +"-" + suit;
   }
 }
