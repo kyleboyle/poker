@@ -17,7 +17,7 @@ public class HandTest extends TestCase {
     return new TestSuite(HandTest.class);
   }
 
-  public void testHandFlush() {
+  public void testFlush() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkFlush());
     assertNull(hand.category);
@@ -30,7 +30,7 @@ public class HandTest extends TestCase {
     assertFalse(hand.checkFlush());
   }
 
-  public void testHandStraight() {
+  public void testStraight() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkStraight());
     assertNull(hand.category);
@@ -38,9 +38,24 @@ public class HandTest extends TestCase {
     hand = App.getHand("9D,8S,TD,QD,JD");
     assertTrue(hand.checkStraight());
     assertEquals(Category.STRAIGHT, hand.category);
+
+    // check gap
+    hand = App.getHand("9D,8S,TD,QD,KD");
+    assertFalse(hand.checkStraight());
+    assertNull(hand.category);
   }
 
-  public void testHandStraightFlush() {
+  public void testAceLowStraight() {
+    Hand hand = App.getHand("2D,AH,3C,4S,6S");
+    assertFalse(hand.checkStraight());
+    assertNull(hand.category);
+
+    hand = App.getHand("2D,AH,3C,4S,5S");
+    assertTrue(hand.checkStraight());
+    assertEquals(Category.STRAIGHT, hand.category);
+  }
+
+  public void testStraightFlush() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkStraightFlush());
     assertNull(hand.category);
@@ -54,7 +69,7 @@ public class HandTest extends TestCase {
     assertNull(hand.category);
   }
 
-  public void testHandQuadruple() {
+  public void testQuadruple() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkQuadruple());
     assertNull(hand.category);
@@ -68,7 +83,7 @@ public class HandTest extends TestCase {
     assertNull(hand.category);
   }
 
-  public void testHandTriple() {
+  public void testTriple() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkTriple());
     assertNull(hand.category);
@@ -86,7 +101,7 @@ public class HandTest extends TestCase {
     assertEquals(Category.TRIPLE, hand.category);
   }
 
-  public void testHandFullHouse() {
+  public void testFullHouse() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkFullHouse());
     assertNull(hand.category);
@@ -100,7 +115,7 @@ public class HandTest extends TestCase {
     assertNull(hand.category);
   }
 
-  public void testHandTwoPair() {
+  public void testTwoPair() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkTwoPair());
     assertNull(hand.category);
@@ -114,7 +129,7 @@ public class HandTest extends TestCase {
     assertNull(hand.category);
   }
 
-  public void testHandPair() {
+  public void testPair() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertFalse(hand.checkPair());
     assertNull(hand.category);
@@ -124,7 +139,7 @@ public class HandTest extends TestCase {
     assertEquals(Category.PAIR, hand.category);
   }
 
-  public void testHandHighcard() {
+  public void testHighcard() {
     Hand hand = App.getHand("TD,AH,3C,KS,2S");
     assertTrue(hand.checkHighcard());
     assertEquals(Category.HIGH_CARD, hand.category);

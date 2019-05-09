@@ -24,7 +24,8 @@ public class Hand {
   public List<Card> categoryCards;
 
   /**
-   * the list of cards that are not in the category, used for breaking category ties (who has high card)
+   * the list of cards that are not in the category, used for breaking category ties (who has high
+   * card)
    */
   public List<Card> nonCategoryCards;
 
@@ -65,7 +66,6 @@ public class Hand {
    */
   boolean checkStraightFlush() {
     if (checkFlush() && checkStraight()) {
-      this.categoryCards = new ArrayList<>(this.cards);
       this.category = Category.STRAIGHT_FLUSH;
       return true;
     }
@@ -78,13 +78,28 @@ public class Hand {
    * do all cards in the hand form a sequence
    */
   boolean checkStraight() {
-    // todo add check for ace low straight
-    for (int i = 0; i < cards.size() - 1; i++) {
-      // make sure the next card in the descending sorted sequence is one value lower
-      if (cards.get(i).compareTo(cards.get(i + 1)) != 1) {
-        return false;
+
+    // check for ace low straight first since it's not in straight order.
+    if (cards.get(0).type.equals(CardType.ACE)
+        && cards.get(1).type.equals(CardType.FIVE)
+        && cards.get(2).type.equals(CardType.FOUR)
+        && cards.get(3).type.equals(CardType.THREE)
+        && cards.get(4).type.equals(CardType.TWO)
+    ) {
+      this.categoryCards = new ArrayList<>(this.cards);
+      // replace the high ace with a low ace placeholder so card ordering / comparisons work
+      this.categoryCards.set(0, new Card(CardType.ACE_LOW, this.categoryCards.get(0).suit));
+      this.category = Category.STRAIGHT;
+      return true;
+    } else {
+      for (int i = 0; i < cards.size() - 1; i++) {
+        // make sure the next card in the descending sorted sequence is one value lower
+        if (cards.get(i).compareTo(cards.get(i + 1)) != 1) {
+          return false;
+        }
       }
     }
+
     this.categoryCards = new ArrayList<>(this.cards);
     this.category = Category.STRAIGHT;
     return true;

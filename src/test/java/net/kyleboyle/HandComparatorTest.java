@@ -31,6 +31,9 @@ public class HandComparatorTest extends TestCase {
 
     // same high card
     assertTrue(handsAreTied("2H,3D,4H,5D,AH", "2S,3C,4S,5C,AD"));
+
+    // test ace low straight vs other straight
+    assertTrue(hand1IsBetter("2H,3H,4H,5H,6H", "2S,3S,4S,5S,AS"));
   }
 
   private boolean handsAreTied(String hand1, String hand2) {

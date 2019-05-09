@@ -1,6 +1,7 @@
 package net.kyleboyle;
 
 public enum CardType {
+  ACE_LOW,
   TWO,
   THREE,
   FOUR,
