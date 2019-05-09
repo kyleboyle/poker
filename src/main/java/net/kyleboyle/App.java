@@ -19,10 +19,24 @@ public class App {
     /* marshal input into internal data model */
     Hand hand1 = getHand(args[0]);
     hand1.calculateCategory();
-    Hand hand2 = getHand(args[0]);
+    Hand hand2 = getHand(args[1]);
     hand2.calculateCategory();
 
-    System.out.println("todo");
+    HandComparator comp = new HandComparator();
+    int cmp = comp.compare(hand1, hand2);
+
+    System.out.println();
+    System.out.println(args[0] + " vs " + args[1] + "");
+    System.out.println(hand1.category + " vs " + hand2.category);
+
+    if (cmp == 0) {
+      System.out.println("tie!");
+    } else if (cmp > 1) {
+      System.out.println("first wins - " + hand1.category + " - " + args[0]);
+    } else {
+      System.out.println("second wins - " + hand2.category + " - " + args[1]);
+    }
+    System.out.println();
   }
 
   /**

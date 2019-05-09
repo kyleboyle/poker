@@ -32,8 +32,12 @@ The cards are valued in the order:
 
 
 ## Output
-The most valuable hand
-
+A summary of the hands and which one wins, eg:
+```
+4D,6S,9H,QH,QC vs 2H,2D,4C,4D,4S
+PAIR vs FULL_HOUSE
+second wins - FULL_HOUSE - 2H,2D,4C,4D,4S
+```
 
 ## Build
 
@@ -44,5 +48,7 @@ mvn package
 
 ### run
 ```
-mvn exec:java
+mvn exec:java -Dexec.args="4D,6S,9H,QH,QC 2H,2D,4C,4D,4S"
+# or
+java -jar target/poker-1.0-SNAPSHOT.jar 4D,6S,9H,QH,QC 2H,2D,4C,4D,4S
 ```
