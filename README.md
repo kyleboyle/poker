@@ -7,7 +7,7 @@ Two csv strings representing the two hands to evaluate. Each element in the CSV 
 
 `4D,6S,9H,QH,QC 2H,2D,4C,4D,4S`
 
-The possible card identifiers are: 2, 3, 4, 5, 6, 7, 8, 9, 10 (T), J (Jack), Q (Queen), K, (King), A (Ace)
+The possible card identifiers are: 2, 3, 4, 5, 6, 7, 8, 9, T (10), J (Jack), Q (Queen), K, (King), A (Ace)
 
 The suit identifiers are D (Diamonds), S (Spades), C (Clubs), H (Hearts)
 
