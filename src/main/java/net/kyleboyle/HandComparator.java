@@ -3,6 +3,19 @@ package net.kyleboyle;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Helper for comparing hands to each another. Can be broken into 3 stages:
+ * <p>
+ * - Check for difference in category (eg full house vs a pair). if there is a difference then the
+ * hands can be ordered based on this.
+ * <p>
+ * - If category is the same, check for the value of the cards within that category. eg if both
+ * hands have a pair, which pair is of higher card value. If there is a difference in the card
+ * value, then the hands can be ordered base on the card value.
+ * <p>
+ * - If the cards within the same category are also equivalent, compare the value of the remaining
+ * cards not used by the category (high cards / kicker) in each hand.
+ */
 public class HandComparator implements Comparator<Hand> {
 
   @Override

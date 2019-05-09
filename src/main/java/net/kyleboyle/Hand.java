@@ -42,6 +42,7 @@ public class Hand {
    * cards do not belong to it.
    */
   public void calculateCategory() {
+    // evaluate high value first to avoid having check all
     boolean match = this.checkStraightFlush()
         || this.checkQuadruple()
         || this.checkFullHouse()
@@ -146,7 +147,7 @@ public class Hand {
   }
 
   /**
-   * is there a card type that appears 4 times (eg four Jacks)
+   * is there a card type that appears 3 times (eg three Jacks)
    */
   boolean checkTriple() {
     for (int i = 0; i < 3; i++) {
@@ -167,6 +168,9 @@ public class Hand {
     return false;
   }
 
+  /**
+   * do all cards give a 3 of a kind and a pair
+   */
   boolean checkFullHouse() {
     if (this.checkTriple()) {
       this.computeNonCategoryCards(); // this should now contain a pair if we have a full house.
@@ -182,7 +186,10 @@ public class Hand {
     return false;
   }
 
-
+  /**
+   * are there 2 different pairs
+   * @return
+   */
   boolean checkTwoPair() {
     List<Card> firstPair = findPair(this.cards);
     if (firstPair != null) {
@@ -199,6 +206,10 @@ public class Hand {
     return false;
   }
 
+  /**
+   * is there at least one pair
+   * @return
+   */
   boolean checkPair() {
     List<Card> pair = findPair(this.cards);
     if (pair != null) {
@@ -209,12 +220,18 @@ public class Hand {
     return false;
   }
 
+  /**
+   * classifies the hand as high card
+   */
   boolean checkHighcard() {
     this.category = Category.HIGH_CARD;
     this.categoryCards = this.cards;
     return true;
   }
 
+  /**
+   * find a pair of cards from the input list
+   */
   private List<Card> findPair(List<Card> toCheck) {
     if (toCheck.size() < 2) {
       return null;
@@ -235,6 +252,10 @@ public class Hand {
     return null;
   }
 
+  /**
+   * set the nonCategoryCards member with the list of cards that aren't used
+   * for the main category. Can be used for comparing high cards.
+   */
   public void computeNonCategoryCards() {
     if (this.categoryCards != null && this.categoryCards.size() < 5) {
       this.nonCategoryCards = new ArrayList<>(this.cards);
