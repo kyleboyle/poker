@@ -1,6 +1,7 @@
 package net.kyleboyle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class Hand {
     this.cards = new ArrayList<>(cards);
     // sort in desc order
     this.cards.sort(null);
+    Collections.reverse(this.cards);
   }
 
   /**
@@ -51,8 +53,10 @@ public class Hand {
 
     this.computeNonCategoryCards();
     this.categoryCards.sort(null);
+    Collections.reverse(categoryCards);
     if (this.nonCategoryCards != null) {
       this.nonCategoryCards.sort(null);
+      Collections.reverse(categoryCards);
     }
   }
 
@@ -62,7 +66,6 @@ public class Hand {
   boolean checkStraightFlush() {
     if (checkFlush() && checkStraight()) {
       this.categoryCards = new ArrayList<>(this.cards);
-      this.categoryCards.sort(null);
       this.category = Category.STRAIGHT_FLUSH;
       return true;
     }
@@ -75,8 +78,10 @@ public class Hand {
    * do all cards in the hand form a sequence
    */
   boolean checkStraight() {
+    // todo add check for ace low straight
     for (int i = 0; i < cards.size() - 1; i++) {
-      if (cards.get(i).compareTo(cards.get(i + 1)) != -1) {
+      // make sure the next card in the descending sorted sequence is one value lower
+      if (cards.get(i).compareTo(cards.get(i + 1)) != 1) {
         return false;
       }
     }
@@ -151,7 +156,7 @@ public class Hand {
     if (this.checkTriple()) {
       this.computeNonCategoryCards(); // this should now contain a pair if we have a full house.
       List<Card> pair = findPair(this.nonCategoryCards);
-      if (pair != null && pair.size() == 2) {
+      if (pair != null) {
         this.category = Category.FULL_HOUSE;
         return true;
       }

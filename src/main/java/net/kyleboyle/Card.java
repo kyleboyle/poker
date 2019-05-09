@@ -17,12 +17,12 @@ public class Card implements Comparable<Card> {
    * value.
    *
    * @param other the other card to compare to this card
-   * @return the inverse of the typical natural ordering:  a positive integer, zero, or a negative
+   * @return the typical natural ordering: a negative integer, zero, or a positive
    * integer as this object is less than, equal to, or greater than the specified card.
    */
   @Override
   public int compareTo(Card other) {
-    return -1 * this.type.compareTo(other.type);
+    return this.type.compareTo(other.type);
   }
 
   @Override

@@ -13,11 +13,14 @@ public class App {
     if (args.length != 2) {
       System.err.println(
           "require 2 csv strings of poker hands as input, eg 4D,6S,9H,QH,QC 2H,2D,4C,4D,4S");
+      System.exit(-1);
     }
 
     /* marshal input into internal data model */
     Hand hand1 = getHand(args[0]);
+    hand1.calculateCategory();
     Hand hand2 = getHand(args[0]);
+    hand2.calculateCategory();
 
     System.out.println("todo");
   }
