@@ -9,6 +9,7 @@ public class HandComparatorTest extends TestCase {
   public HandComparatorTest(String testName) {
     super(testName);
   }
+
   public static Test suite() {
     return new TestSuite(HandComparatorTest.class);
   }
@@ -53,5 +54,4 @@ public class HandComparatorTest extends TestCase {
     HandComparator comp = new HandComparator();
     return comp.compare(h1, h2) > 0;
   }
-
 }

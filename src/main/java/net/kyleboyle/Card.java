@@ -13,8 +13,8 @@ public class Card implements Comparable<Card> {
   }
 
   /**
-   * A card's value / rank is not influenced by its suit. Compares the natural order
-   * of the CardType enum.
+   * A card's value / rank is not influenced by its suit. Compares the natural order of the CardType
+   * enum.
    *
    * @param other the other card to compare to this card
    * @return the typical natural ordering: a negative integer, zero, or a positive integer as this

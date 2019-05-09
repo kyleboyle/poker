@@ -188,7 +188,6 @@ public class Hand {
 
   /**
    * are there 2 different pairs
-   * @return
    */
   boolean checkTwoPair() {
     List<Card> firstPair = findPair(this.cards);
@@ -208,7 +207,6 @@ public class Hand {
 
   /**
    * is there at least one pair
-   * @return
    */
   boolean checkPair() {
     List<Card> pair = findPair(this.cards);
@@ -253,8 +251,8 @@ public class Hand {
   }
 
   /**
-   * set the nonCategoryCards member with the list of cards that aren't used
-   * for the main category. Can be used for comparing high cards.
+   * set the nonCategoryCards member with the list of cards that aren't used for the main category.
+   * Can be used for comparing high cards.
    */
   public void computeNonCategoryCards() {
     if (this.categoryCards != null && this.categoryCards.size() < 5) {
