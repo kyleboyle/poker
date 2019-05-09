@@ -1,5 +1,8 @@
 package net.kyleboyle;
 
+/**
+ * Encapsulates a hand's category / card combination and represents relative value based on definition order.
+ */
 public enum Category {
   HIGH_CARD,
   PAIR,

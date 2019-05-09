@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Store the 5 cards and valuation for the cards
+ * Store the 5 cards and the highest value result (category) for the cards. Provides logic for
+ * calculating which category this hand belongs to.
  */
 public class Hand {
 

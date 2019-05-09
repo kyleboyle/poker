@@ -1,5 +1,8 @@
 package net.kyleboyle;
 
+/**
+ * Encapsulates a card's type (or value) and represents relative value based on definition order.
+ */
 public enum CardType {
   ACE_LOW,
   TWO,

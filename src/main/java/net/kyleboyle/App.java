@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Hello world!
+ * Entry point & outputs result of hand comparison
  */
 public class App {
 
@@ -60,7 +60,7 @@ public class App {
     if (cards.size() != 5) {
       throw new RuntimeException("require 5 cards per hand: " + csvCardList);
     }
-    // could perform more validation here - eg no duplicates
+    // TODO could perform more validation here - eg no duplicates
 
     return new Hand(cards);
   }

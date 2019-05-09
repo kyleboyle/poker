@@ -2,6 +2,9 @@ package net.kyleboyle;
 
 import java.util.Objects;
 
+/**
+ * Encapsulates a cards value and suit and provide value comparision to other cards.
+ */
 public class Card implements Comparable<Card> {
 
   public final CardType type;

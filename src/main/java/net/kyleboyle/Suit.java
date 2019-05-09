@@ -1,5 +1,8 @@
 package net.kyleboyle;
 
+/**
+ * the 4 card suits
+ */
 public enum Suit {
 
   HEART,
