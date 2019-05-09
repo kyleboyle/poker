@@ -39,7 +39,21 @@ public class Hand {
    * cards do not belong to it.
    */
   public void calculateCategory() {
-    // todo
+    boolean match = this.checkStraightFlush()
+        || this.checkQuadruple()
+        || this.checkFullHouse()
+        || this.checkFlush()
+        || this.checkStraight()
+        || this.checkTriple()
+        || this.checkTwoPair()
+        || this.checkPair()
+        || this.checkHighcard();
+
+    this.computeNonCategoryCards();
+    this.categoryCards.sort(null);
+    if (this.nonCategoryCards != null) {
+      this.nonCategoryCards.sort(null);
+    }
   }
 
   /**

@@ -148,4 +148,24 @@ public class AppTest
     assertTrue(hand.checkHighcard());
     assertEquals(Category.HIGH_CARD, hand.category);
   }
+
+  public void testGetHighestCategory() {
+    Hand hand = checkCategory("TD,AH,3C,KS,2S", Category.HIGH_CARD);
+    assertEquals(new Card(CardType.ACE, Suit.HEART), hand.categoryCards.get(0));
+    checkCategory("TD,TH,3C,KS,2S", Category.PAIR);
+    checkCategory("TD,KH,3C,KS,TS", Category.TWO_PAIR);
+    checkCategory("TD,TH,3C,KS,TC", Category.TRIPLE);
+    checkCategory("3D,4H,6C,5S,7S", Category.STRAIGHT);
+    checkCategory("4D,TD,3D,KD,2D", Category.FLUSH);
+    checkCategory("TD,TH,TC,KS,KH", Category.FULL_HOUSE);
+    checkCategory("TD,TH,TC,TS,2S", Category.QUADRUPLE);
+    checkCategory("TS,AS,QS,KS,JS", Category.STRAIGHT_FLUSH);
+  }
+
+  private Hand checkCategory(String cards, Category category) {
+    Hand hand = App.getHand(cards);
+    hand.calculateCategory();
+    assertEquals(category, hand.category);
+    return hand;
+  }
 }
