@@ -8,9 +8,7 @@ public enum Suit {
 
   SPADE,
 
-  CLUB,
-
-  NONE;
+  CLUB;
 
   public static Suit of(char value) {
     switch (value) {
@@ -23,6 +21,6 @@ public enum Suit {
       case 'C':
         return CLUB;
     }
-    return NONE;
+    return null;
   }
 }

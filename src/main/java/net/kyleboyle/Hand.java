@@ -2,19 +2,30 @@ package net.kyleboyle;
 
 import java.util.List;
 
-/** Store the 5 cards and valuation for the cards */
+/**
+ * Store the 5 cards and valuation for the cards
+ */
 public class Hand {
 
-  List<Card> cards;
+  public final List<Card> cards;
 
-  /** The highest ranked category for this hand */
+  /**
+   * The highest ranked category for this hand
+   */
   Category category;
 
-  /** the list of cards that satisfy the category */
+  /**
+   * the list of cards that satisfy the category
+   */
   List<Card> categoryCards;
 
-  /** the list of cards that are not in the category, used for breaking ties*/
+  /**
+   * the list of cards that are not in the category, used for breaking ties
+   */
   List<Card> nonCategoryCards;
 
 
+  public Hand(List<Card> cards) {
+    this.cards = cards;
+  }
 }

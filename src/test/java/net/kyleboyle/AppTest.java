@@ -31,8 +31,12 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
+    public void testCardInputParse()
     {
-        assertTrue( true );
+      Hand hand = App.getHand("TD,AH,3C,KS,2S");
+      assertNotNull(hand);
+      assertEquals(5, hand.cards.size());
+      assertTrue(hand.cards.contains(new Card(CardType.ACE, Suit.HEART)));
+      /* TODO test more error scenarios and test all enums */
     }
 }

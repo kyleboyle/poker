@@ -1,5 +1,7 @@
 package net.kyleboyle;
 
+import java.util.Objects;
+
 public class Card {
 
   private final CardType type;
@@ -19,5 +21,23 @@ public class Card {
    */
   int compare(Card other) {
     return this.type.compareTo(other.type);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Card card = (Card) o;
+    return type == card.type &&
+        suit == card.suit;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(type, suit);
   }
 }

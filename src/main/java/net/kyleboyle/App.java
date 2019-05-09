@@ -1,5 +1,9 @@
 package net.kyleboyle;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Hello world!
  */
@@ -23,7 +27,22 @@ public class App {
    *
    * @return A Hand containing the cards identified by the csv list.
    */
-  private static Hand getHand(String csvCardList) {
-    return null;
+  public static Hand getHand(String csvCardList) {
+    String[] cardStrings = csvCardList.split(",");
+    List<Card> cards = Arrays.stream(cardStrings).map(s -> {
+      if (s.length() != 2) {
+        throw new RuntimeException("invalid card string " + s);
+      }
+      CardType type = CardType.of(s.charAt(0));
+      Suit suit = Suit.of(s.charAt(1));
+      if (type == null || suit == null) {
+        throw new RuntimeException("invalid type or suit " + s);
+      }
+      return new Card(type, suit);
+    }).collect(Collectors.toList());
+    if (cards.size() != 5) {
+      throw new RuntimeException("require 5 cards per hand: " + csvCardList);
+    }
+    return new Hand(cards);
   }
 }
