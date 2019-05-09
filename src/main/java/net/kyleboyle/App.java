@@ -43,6 +43,8 @@ public class App {
     if (cards.size() != 5) {
       throw new RuntimeException("require 5 cards per hand: " + csvCardList);
     }
+    // could perform more validation here - eg no duplicates
+
     return new Hand(cards);
   }
 }

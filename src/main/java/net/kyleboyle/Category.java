@@ -8,6 +8,6 @@ public enum Category {
   STRAIGHT,
   FLUSH,
   FULL_HOUSE,
-  FOUR_OF_KIND,
+  QUADRUPLE,
   STRAIGHT_FLUSH;
 }

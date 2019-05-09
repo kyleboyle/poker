@@ -72,4 +72,80 @@ public class AppTest
     assertFalse(hand.checkStraightFlush());
     assertNull(hand.category);
   }
+
+  public void testHandQuadruple() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertFalse(hand.checkQuadruple());
+    assertNull(hand.category);
+
+    hand = App.getHand("TS,TH,QS,TD,TC");
+    assertTrue(hand.checkQuadruple());
+    assertEquals(Category.QUADRUPLE, hand.category);
+
+    hand = App.getHand("TS,TH,QS,TD,2C");
+    assertFalse(hand.checkQuadruple());
+    assertNull(hand.category);
+  }
+
+  public void testHandTriple() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertFalse(hand.checkTriple());
+    assertNull(hand.category);
+
+    hand = App.getHand("TD,TH,3C,3S,2S");
+    assertFalse(hand.checkTriple());
+    assertNull(hand.category);
+
+    hand = App.getHand("2S,8H,8S,2C,2D");
+    assertTrue(hand.checkTriple());
+    assertEquals(Category.TRIPLE, hand.category);
+
+    hand = App.getHand("2S,8H,9S,2C,2D");
+    assertTrue(hand.checkTriple());
+    assertEquals(Category.TRIPLE, hand.category);
+  }
+
+  public void testHandFullHouse() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertFalse(hand.checkFullHouse());
+    assertNull(hand.category);
+
+    hand = App.getHand("TD,TH,3S,TC,3D");
+    assertTrue(hand.checkFullHouse());
+    assertEquals(Category.FULL_HOUSE, hand.category);
+
+    hand = App.getHand("TD,TH,TC,2S,3D");
+    assertFalse(hand.checkFullHouse());
+    assertNull(hand.category);
+  }
+
+  public void testHandTwoPair() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertFalse(hand.checkTwoPair());
+    assertNull(hand.category);
+
+    hand = App.getHand("TD,TH,3S,4C,3D");
+    assertTrue(hand.checkTwoPair());
+    assertEquals(Category.TWO_PAIR, hand.category);
+
+    hand = App.getHand("TD,TH,5C,2S,3D");
+    assertFalse(hand.checkTwoPair());
+    assertNull(hand.category);
+  }
+
+  public void testHandPair() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertFalse(hand.checkPair());
+    assertNull(hand.category);
+
+    hand = App.getHand("TD,TH,3S,4C,5D");
+    assertTrue(hand.checkPair());
+    assertEquals(Category.PAIR, hand.category);
+  }
+
+  public void testHandHighcard() {
+    Hand hand = App.getHand("TD,AH,3C,KS,2S");
+    assertTrue(hand.checkHighcard());
+    assertEquals(Category.HIGH_CARD, hand.category);
+  }
 }

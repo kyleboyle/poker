@@ -28,7 +28,7 @@ In the card game poker, a hand consists of five cards and are ranked, from lowes
 If the hands are tied based on above category, the hands are ranked based on card value.
 
 The cards are valued in the order:
-2, 3, 4, 5, 6, 7, 8, 9, 10, Jack (J) , Queen (Q), King (K) , Ace (A).
+2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
 
 
 ## Output
